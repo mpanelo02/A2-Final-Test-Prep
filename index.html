@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Suomenkielinen Kysymyspyörä</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #fcc890;
+    }
+    button {
+      font-size: 18px;
+      padding: 10px 25px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      background-color: #007bff;
+      color: white;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #audioPlayer {
+      margin-top: 20px;
+      width: 300px;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>📖 Kappale Kahdeksan</h1>
+  <br />
+  <button onclick="playChapterKahdeksan()">▶ Pelata</button>
+  <br />
+  <button onclick="getRandomQuestion8()">Kiepausta!</button>
+  <button onclick="repeatQuestion8()">🔁 Toista</button>
+  <br />
+  <br />
+  <audio id="audioPlayer" controls></audio>
+  <br />
+  <br />
+  <h1>📖 Kappale Viisi</h1>
+  <br />
+  <button onclick="playChapterViisi()">▶ Pelata</button>
+  <br />
+  <button onclick="getRandomQuestion()">Kiepausta!</button>
+  <button onclick="repeatQuestion()">🔁 Toista</button>
+  <br />
+  <br />
+  <audio id="audioPlayer4" controls></audio>
+  <br />
+  <br />
+  <h1>📖 Kappale Nelja</h1>
+  <br />
+  <button onclick="playChapterNelja()">▶ Pelata</button>
+  <br />
+  <button onclick="getRandomQuestion4()">Kiepausta!</button>
+  <button onclick="repeatQuestion4()">🔁 Toista</button>
+
+
+  <script>
+    // Array of audio file paths for each question
+    const questionAudios = [
+      "501.mp3",
+      "502.mp3",
+      "503.mp3",
+      "504.mp3",
+      "505.mp3",
+      "506.mp3",
+      "507.mp3",
+      "508.mp3",
+      "509.mp3",
+      "510.mp3",
+      "511.mp3",
+      "512.mp3",
+      "513.mp3",
+    ];
+
+    const questionAudios4 = [
+      "401.mp3",
+      "402.mp3",
+      "403.mp3",
+      "404.mp3",
+      "405.mp3",
+      "406.mp3",
+      "407.mp3",
+      "408.mp3",
+      "409.mp3",
+      "410.mp3",
+      "411.mp3",
+    ];
+
+    const questionAudios8 = [
+      "801.mp3",
+      "802.mp3",
+      "803.mp3",
+      "804.mp3",
+      "805.mp3",
+      "806.mp3",
+      "807.mp3",
+      "808.mp3",
+      "809.mp3",
+    ];
+
+    const chapterNeljaAudio = "Chapter_4.mp3";
+
+    const chapterViisiAudio = "Chapter_5.mp3";
+
+    const chapterKahdeksanAudio = "Chapter_8.mp3";
+
+    let currentAudioIndex = -1;
+    const audioPlayer = document.getElementById('audioPlayer');
+
+    let currentAudioIndex4 = -1;
+    const audioPlayer4 = document.getElementById('audioPlayer4');
+
+    function playChapterKahdeksan() {
+      audioPlayer.src = chapterKahdeksanAudio;
+      audioPlayer.play().catch(e => console.error("Chapter audio play failed:", e));
+    }
+    function playChapterViisi() {
+      audioPlayer4.src = chapterViisiAudio;
+      audioPlayer4.play().catch(e => console.error("Chapter audio play failed:", e));
+    }
+    function playChapterNelja() {
+      audioPlayer4.src = chapterNeljaAudio;
+      audioPlayer4.play().catch(e => console.error("Chapter audio play failed:", e));
+    }
+
+    function getRandomQuestion8() {
+      const randomIndex = Math.floor(Math.random() * questionAudios8.length);
+      currentAudioIndex = randomIndex;
+      playQuestion8(randomIndex);
+    }
+    function getRandomQuestion() {
+      const randomIndex = Math.floor(Math.random() * questionAudios.length);
+      currentAudioIndex4 = randomIndex;
+      playQuestion(randomIndex);
+    }
+    function getRandomQuestion4() {
+      const randomIndex = Math.floor(Math.random() * questionAudios4.length);
+      currentAudioIndex4 = randomIndex;
+      playQuestion4(randomIndex);
+    }
+
+    function repeatQuestion8() {
+      if (currentAudioIndex >= 0) {
+        playQuestion8(currentAudioIndex);
+      }
+    }
+    function repeatQuestion() {
+      if (currentAudioIndex4 >= 0) {
+        playQuestion(currentAudioIndex4);
+      }
+    }
+    function repeatQuestion4() {
+      if (currentAudioIndex4 >= 0) {
+        playQuestion4(currentAudioIndex4);
+      }
+    }
+
+    function playQuestion8(index) {
+      audioPlayer.src = questionAudios8[index];
+      audioPlayer.play().catch(e => console.error("Audio play failed:", e));
+    }
+    function playQuestion(index) {
+      audioPlayer4.src = questionAudios[index];
+      audioPlayer4.play().catch(e => console.error("Audio play failed:", e));
+    }
+    function playQuestion4(index) {
+      audioPlayer4.src = questionAudios4[index];
+      audioPlayer4.play().catch(e => console.error("Audio play failed:", e));
+    }
+
+    // Preload audio files for better performance
+    function preloadAudios() {
+      questionAudios8.forEach(audioSrc => {
+        const audio = new Audio();
+        audio.src = audioSrc;
+      });
+    }
+    function preloadAudios() {
+      questionAudios.forEach(audioSrc => {
+        const audio = new Audio();
+        audio.src = audioSrc;
+      });
+    }
+    function preloadAudios4() {
+      questionAudios4.forEach(audioSrc => {
+        const audio = new Audio();
+        audio.src = audioSrc;
+      });
+    }
+
+    // Start preloading when page loads
+    window.onload = preloadAudios;
+  </script>
+
+</body>
+</html>
