@@ -75,9 +75,23 @@
   </style>
 </head>
 <body>
+  <h1>📖 Kappale Yhdeksän</h1>
+  <br />
+  <button onclick="playChapterYhdeksan()">▶ Soittaa</button>
+  <br />
+  <br />
+  <audio id="audioPlayer9" controls></audio>
+  <br />
+  <br />
+  <div class="container">
+    <div class="lines">
+      <div class="diamond"></div>
+    </div>
+  </div>
+  <br />
   <h1>📖 Kappale Kahdeksan</h1>
   <br />
-  <button onclick="playChapterKahdeksan()">▶ Pelata</button>
+  <button onclick="playChapterKahdeksan()">▶ Soittaa</button>
   <br />
   <button onclick="getRandomQuestion8()">Kiepausta!</button>
   <button onclick="repeatQuestion8()">🔁 Toista</button>
@@ -88,7 +102,7 @@
   <br />
   <h1>Postpositiot</h1>
   <br />
-  <button onclick="playChapterKahdeksanP()">▶ Pelata</button>
+  <button onclick="playChapterKahdeksanP()">▶ Soittaa</button>
   <br />
   <button onclick="getRandomQuestion8P()">Kiepausta!</button>
   <button onclick="repeatQuestion8P()">🔁 Toista</button>
@@ -102,7 +116,7 @@
   <br />
   <h1>📖 Kappale Viisi</h1>
   <br />
-  <button onclick="playChapterViisi()">▶ Pelata</button>
+  <button onclick="playChapterViisi()">▶ Soittaa</button>
   <br />
   <button onclick="getRandomQuestion()">Kiepausta!</button>
   <button onclick="repeatQuestion()">🔁 Toista</button>
@@ -113,7 +127,7 @@
   <br />
   <h1>📖 Kappale Nelja</h1>
   <br />
-  <button onclick="playChapterNelja()">▶ Pelata</button>
+  <button onclick="playChapterNelja()">▶ Soittaa</button>
   <br />
   <button onclick="getRandomQuestion4()">Kiepausta!</button>
   <button onclick="repeatQuestion4()">🔁 Toista</button>
@@ -185,12 +199,21 @@
 
     const chapterKahdeksanPAudio = "Chapter_8P.mp3";
 
+    const chapterYhdeksanAudio = "Chapter_9.mp3";
+
+    let currentAudioIndex9 = -1;
+    const audioPlayer9 = document.getElementById('audioPlayer9');
+
     let currentAudioIndex = -1;
     const audioPlayer = document.getElementById('audioPlayer');
 
     let currentAudioIndex4 = -1;
     const audioPlayer4 = document.getElementById('audioPlayer4');
 
+    function playChapterYhdeksan() {
+      audioPlayer9.src = chapterYhdeksanAudio;
+      audioPlayer9.play().catch(e => console.error("Chapter audio play failed:", e));
+    }
     function playChapterKahdeksan() {
       audioPlayer.src = chapterKahdeksanAudio;
       audioPlayer.play().catch(e => console.error("Chapter audio play failed:", e));
